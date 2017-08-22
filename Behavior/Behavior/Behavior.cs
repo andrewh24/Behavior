@@ -41,6 +41,21 @@ public class Behavior
         }
     }
 
+    public string GetRandomDirection()
+    {
+        Random rand = new Random();
+        int direction = rand.Next(2);
+
+        if (direction == 0)
+        {
+            return "left";
+        }
+        else
+        {
+            return "right";
+        }
+    }
+
     public string GetRandomWithWeight(List<AnimationData> list)
     {
         Random rnd = new Random();
@@ -87,8 +102,8 @@ public class Behavior
         animationList.Add(new AnimationData(2, "looking_around", 1));
         animationList.Add(new AnimationData(3, "whistling", 1));
         animationList.Add(new AnimationData(4, "foot_playing", 1));
-       
-        for (int i = 1; i <= 10; i++)
+
+        for (int i = 1; i <= 100; i++)
         {
             current = newBehavior.GetRandomWithWeight(animationList);
             if (!current.Equals(previous))
@@ -96,6 +111,8 @@ public class Behavior
                 Console.WriteLine("{0}) Output: {1}", i, current);
             }
             previous = current;
+
+            Console.WriteLine("{0}", newBehavior.GetRandomDirection());
         }
                    
         Console.ReadLine();
