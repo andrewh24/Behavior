@@ -46,7 +46,7 @@ public class Behavior
         Random rnd = new Random();
         int weightTotal = 0;
         int total = 0;
-        int i;
+        int i = 0;
         int[] cumulativeWeights = new int[list.Count];
         int cumulative = 0;
 
@@ -61,13 +61,9 @@ public class Behavior
         {
             weightTotal += list[i].GetWeight;
         }
-
+        weightTotal += 1;
         // generating random number in a range of 0 to sum of weights
-        int rand = rnd.Next(weightTotal + 1);
-        Console.WriteLine();
-        Console.WriteLine("Random number from range: {0}", rand);
-        Console.WriteLine();
-        i = 0;
+        int rand = rnd.Next(weightTotal);
        
         // comparing generating number with cumulative weights
         for (i = 0; i < list.Count; i++)
@@ -82,6 +78,8 @@ public class Behavior
     public static void Main()
     {
         Behavior newBehavior = new Behavior();
+        string current = "";
+        string previous = "";
 
         List<AnimationData> animationList = new List<AnimationData>();
         animationList.Add(new AnimationData(0, "throwing", 1));
@@ -89,17 +87,13 @@ public class Behavior
         animationList.Add(new AnimationData(2, "looking_around", 1));
         animationList.Add(new AnimationData(3, "whistling", 1));
         animationList.Add(new AnimationData(4, "foot_playing", 1));
-
-        Random rnd = new Random();
-        string current = "";
-        string previous = "";
-
-        for (int i = 0; i < 100; i++)
+       
+        for (int i = 1; i <= 10; i++)
         {
             current = newBehavior.GetRandomWithWeight(animationList);
             if (!current.Equals(previous))
             {
-                Console.WriteLine("Output: {0}", current);
+                Console.WriteLine("{0}) Output: {1}", i, current);
             }
             previous = current;
         }
