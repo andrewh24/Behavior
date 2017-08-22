@@ -91,10 +91,17 @@ public class Behavior
         animationList.Add(new AnimationData(4, "foot_playing", 1));
 
         Random rnd = new Random();
+        string current = "";
+        string previous = "";
 
         for (int i = 0; i < 100; i++)
         {
-            Console.WriteLine("Output: {0}", newBehavior.GetRandomWithWeight(animationList));
+            current = newBehavior.GetRandomWithWeight(animationList);
+            if (!current.Equals(previous))
+            {
+                Console.WriteLine("Output: {0}", current);
+            }
+            previous = current;
         }
                    
         Console.ReadLine();
